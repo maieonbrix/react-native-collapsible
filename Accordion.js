@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { View, TouchableHighlight } from 'react-native';
+import { View, TouchableHighlight, ScrollView } from 'react-native';
 import Collapsible from './Collapsible';
 import { ViewPropTypes } from './config';
 
@@ -96,7 +96,10 @@ export default class Accordion extends Component {
     );
 
     return (
-      <View style={containerStyle} {...viewProps}>
+      <ScrollView
+        {...viewProps}
+        contentContainerStyle={containerStyle}
+        showsVerticalScrollIndicator={false}>
         {sections.map((section, key) => (
           <View key={key} style={sectionContainerStyle}>
             {renderSectionTitle(section, key, activeSections.includes(key))}
@@ -119,7 +122,7 @@ export default class Accordion extends Component {
             {!expandFromBottom && renderCollapsible(section, key)}
           </View>
         ))}
-      </View>
+      </ScrollView>
     );
   }
 }
